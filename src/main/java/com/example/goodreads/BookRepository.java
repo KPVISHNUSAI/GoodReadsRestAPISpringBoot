@@ -12,4 +12,6 @@ public interface BookRepository {
     Book addBook(Book book);
 
     Book updateBook(int bookId, Book book);
+
+    void deleteBook(int bookId);
 }
