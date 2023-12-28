@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 
 public class BookService implements BookRepository {
     private HashMap<Integer, Book> hmap = new HashMap<>();
+    int uniqueBookId = 3;
 
     public BookService() {
         Book b1 = new Book(1, "harry Potter", "harry_potter.jpg");
@@ -35,6 +36,14 @@ public class BookService implements BookRepository {
         if (book == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
+        return book;
+    }
+
+    @Override
+    public Book addBook(Book book) {
+        book.setId(uniqueBookId);
+        hmap.put(uniqueBookId, book);
+        uniqueBookId += 1;
         return book;
     }
 }
